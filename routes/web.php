@@ -29,4 +29,6 @@ Route::get('/logout', [LoginController::class, 'logout'])->middleware('auth')->n
 
 Route::middleware('auth')->group(function () {
     Route::get('/todos', [TodoController::class, 'index'])->name('todo.index');
+    Route::post('/todos', [TodoController::class, 'store'])->name('todo.store');
+    Route::get('/todos/create', [TodoController::class, 'create'])->name('todo.create');
 });

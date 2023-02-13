@@ -24,7 +24,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        Session::flash('message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan username dan password.');
+        Session::flash('message', 'Registration Success');
 
         return redirect('login');
     }
