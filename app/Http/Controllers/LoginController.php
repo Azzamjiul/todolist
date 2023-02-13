@@ -23,7 +23,7 @@ class LoginController extends Controller
         ];
 
         if (Auth::Attempt($data)) {
-            return redirect('/');
+            return redirect()->route('todo.index');
         } else {
             Session::flash('error', 'Email atau Password Salah');
             return redirect('login');
@@ -31,4 +31,9 @@ class LoginController extends Controller
     }
 
     // memproses logout
+    public function logout ()
+    {
+        Auth::logout();
+        return redirect('login');
+    }
 }
