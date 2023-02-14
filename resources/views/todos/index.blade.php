@@ -5,14 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>List TODOs</title>
+  <style>
+    table, th, td {
+      border: 1px solid;
+    }
+  </style>
 </head>
 <body>
   <h1>All Todos</h1>
 
-  <ol>
-    @foreach ($todos as $todo)
-      <li>{{ $todo->name }} - Status: {{ $todo->status }}</li>  
-    @endforeach
-  </ol>
+  <table>
+    <thead>
+      <th>No</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Action</th>
+    </thead>
+    <tbody>
+      @foreach ($todos as $k => $todo)
+      <tr>
+        <td> {{ $k + 1 }} </td>
+        <td> {{ $todo->name }} </td>
+        <td> {{ $todo->status }} </td>
+        <td> <a href="{{ route('todo.edit', $todo->id) }}">edit</a> </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
 </body>
 </html>
