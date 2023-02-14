@@ -33,8 +33,23 @@ class TodoController extends Controller
     }
 
     // menampilkan halaman form edit todo
+    public function edit ($id)
+    {
+        $todo = Todo::where('user_id', Auth::user()->id)->where('id', $id)->first();
+
+        return view('todos.edit', compact('todo'));
+    }
 
     // proses update data todo
+    public function update($id, Request $request)
+    {
+        Todo::where('user_id', Auth::user()->id)->where('id', $id)->update([
+            'name' => $request->name,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('todo.index');
+    }
 
     // proses delete data todo
 }

@@ -31,4 +31,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/todos', [TodoController::class, 'index'])->name('todo.index');
     Route::post('/todos', [TodoController::class, 'store'])->name('todo.store');
     Route::get('/todos/create', [TodoController::class, 'create'])->name('todo.create');
+    Route::get('/todos/{id}/edit', [TodoController::class, 'edit'])->name('todo.edit');
+    Route::put('/todos/{id}/update', [TodoController::class, 'update'])->name('todo.update');
 });
