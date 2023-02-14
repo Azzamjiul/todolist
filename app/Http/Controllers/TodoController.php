@@ -52,4 +52,15 @@ class TodoController extends Controller
     }
 
     // proses delete data todo
+    public function delete($id)
+    {
+        $todo = Todo::where('user_id', Auth::user()->id)->where('id', $id)->first();
+
+        if (!$todo) {
+            return redirect()->route('todo.index')->with('error', 'todo tidak ditemukan');
+        }
+
+        $todo->delete();
+        return redirect()->route('todo.index');
+    }
 }

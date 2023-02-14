@@ -27,7 +27,16 @@
         <td> {{ $k + 1 }} </td>
         <td> {{ $todo->name }} </td>
         <td> {{ $todo->status }} </td>
-        <td> <a href="{{ route('todo.edit', $todo->id) }}">edit</a> </td>
+        <td> 
+          <a href="{{ route('todo.edit', $todo->id) }}">edit</a>
+
+          <a href="javascript:void(0);" onclick="document.getElementById('form-{{$todo->id}}').submit()">delete</a>
+
+          <form id="form-{{$todo->id}}" action="{{ route('todo.delete', $todo->id) }}" method="POST">
+            @csrf
+            @method('delete')
+          </form>
+        </td>
       </tr>
       @endforeach
     </tbody>
